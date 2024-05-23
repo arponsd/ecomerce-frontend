@@ -6,6 +6,14 @@ module.exports = {
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {
+    extend: {
+      colors: {
+        'primary':'#070F2B',
+        'primary-light': '#1B1A55',
+        'primary-lighter': '#535C91',
+        'primary-lightest': '#9290C3',
+      }
+    },
     accentColor: ({ theme }) => ({
       ...theme('colors'),
       auto: 'auto',
@@ -190,7 +198,15 @@ module.exports = {
       '6xl': '72rem',
       '7xl': '80rem',
     },
-    container: {},
+    container: {
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      },
+    },
     content: {
       none: 'none',
     },
