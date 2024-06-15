@@ -12,7 +12,10 @@ module.exports = {
         'primary-light': '#1B1A55',
         'primary-lighter': '#535C91',
         'primary-lightest': '#9290C3',
-      }
+      },
+      fontFamily: {
+        lato: ['Lato', 'sans-serif'],
+      },
     },
     accentColor: ({ theme }) => ({
       ...theme('colors'),
