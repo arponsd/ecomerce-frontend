@@ -1,9 +1,10 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ProductThumbComponent } from '../../layouts/component/product-thumb/product-thumb.component';
 @Component({
   selector: 'app-default-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ProductThumbComponent],
   templateUrl: './default-home.component.html'
 })
 export class DefaultHomeComponent implements OnInit  {

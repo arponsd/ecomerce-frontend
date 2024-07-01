@@ -1,5 +1,5 @@
 <section class="container mx-auto py-8">
-  <div class="w-full h-auto md:h-96 flex-col md:flex items-center justify-center md:justify-normal gap-2">
+  <div class="w-full h-auto md:h-96 flex items-center justify-center md:justify-normal gap-2">
     <div class="h-full w-full md:w-1/2">
       <img class="h-full w-full overflow-hidden object-fill" src="./assets/images/banner/1.jpg" alt="">
     </div>
@@ -55,4 +55,11 @@
     <button (click)="onClickOption(2)" class="font-lato text-lg" [ngClass]="{'text-gray-700': selectedButton() === 2}">ON SALE</button>
     <button (click)="onClickOption(3)" class="font-lato text-lg" [ngClass]="{'text-gray-700': selectedButton() === 3}">FEATURED PRODUCTS</button>
   </div>
+
+  <div class="grid grid-cols-4 gap-8">
+    <ng-container *ngFor="let item of [1,2,3,4,5,6,7,8]">
+      <product-thumb></product-thumb>
+    </ng-container>
+  </div>
+
 </section>
