@@ -1,9 +1,10 @@
+import { NgFor } from '@angular/common';
 import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'product-thumb',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './product-thumb.component.html'
 })
 export class ProductThumbComponent {
