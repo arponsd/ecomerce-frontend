@@ -1,0 +1,54 @@
+import { tap } from 'rxjs';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule],
+  templateUrl: './login.component.html'
+})
+export class LoginComponent implements OnInit{
+
+  loginForm!: FormGroup;
+
+  constructor (private fb:FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId:Object
+  ) {}
+
+  ngOnInit(): void {
+    this.formInit();
+  }
+
+  formInit() {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    })
+  }
+
+
+  onSubmit() {
+    const value = this.loginForm.value;
+    let body = {
+      ...value
+    };
+    this.authService.login(body).subscribe((res: any) => {
+      if(res.status === 'success') {
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('token', res.token);
+        }
+        this.router.navigateByUrl('/');
+      } else {
+        alert('Wrong email or password');
+      }
+    })
+  }
+
+
+}

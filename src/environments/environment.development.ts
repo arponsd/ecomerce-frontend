@@ -1,6 +1,6 @@
-const SERVER_NAME = `http://192.168.0.104:8000`;
+const SERVER_NAME = `http://localhost:3000`;
 // const SERVER_URL = `${SERVER_NAME}/api/theme`;
-const SERVER_URL = `${SERVER_NAME}/api/theme`;
+const SERVER_URL = `${SERVER_NAME}`;
 
 export const environment = {
   appName: 'Demo Ecomerce',
