@@ -57,7 +57,7 @@
   </div>
 
   <div class="grid grid-cols-4 gap-8">
-    @for(product of productList; track product._id) {
+    @for(product of productList() ; track product._id) {
       <product-thumb [product]="product"></product-thumb>
     }
   </div>

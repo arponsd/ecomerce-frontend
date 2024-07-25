@@ -14,13 +14,17 @@ import { LoggerService } from '../../services/logger.service';
 export class DefaultHomeComponent implements OnInit  {
   productService = inject(ProductService);
   browserConsole = inject(LoggerService)
+  productList = signal<any> ([]);
+
+
 
   selectedButton = signal<number>(1);
-  productList: any = this.productService.products().data;
 
   constructor() {}
   ngOnInit(): void {
     this.onClickOption(this.selectedButton());
+    let products = this.productService.products().data;
+    this.productList.set(products);
   }
 
   onClickOption(n: number) {

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of, shareReplay } from 'rxjs';
 
 @Injectable()
 export class ProductService {
@@ -12,5 +12,16 @@ export class ProductService {
   //   return this.http.get<{data: any}>('api/product/index');
   // }
 
-  products = toSignal(this.http.get<{data: any}>('api/product/index'), {initialValue : {data: []}})
+  products = toSignal(this.http.get<{data: any}>('api/product/index')
+  .pipe(
+    catchError((err: any) => {
+      console.error('Error fetching products:', err);
+      return of({data: []});
+    })
+  ), {initialValue : {data: []}});
+
+  single(id: string) {
+    return this.http.get<{data: any}>(`api/product/${id}`);
+  }
+
 }

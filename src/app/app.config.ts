@@ -1,5 +1,5 @@
 import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -24,5 +24,6 @@ const APPINIT_PROVIDES = [
 ]
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideHttpClient(withInterceptors([defaultInterceptor])), ...APPINIT_PROVIDES]
+  providers: [provideClientHydration(),
+    provideRouter(routes, withComponentInputBinding()) , provideHttpClient(withInterceptors([defaultInterceptor])), ...APPINIT_PROVIDES]
 };
