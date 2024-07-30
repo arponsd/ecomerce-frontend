@@ -56,7 +56,17 @@
     <button (click)="onClickOption(3)" class="font-lato text-lg" [ngClass]="{'text-gray-700': selectedButton() === 3}">FEATURED PRODUCTS</button>
   </div>
 
-  <div class="grid grid-cols-4 gap-8">
+  <div *ngIf="selectedButton() === 1" class="grid grid-cols-4 gap-8">
+    @for(product of productList() ; track product._id) {
+      <product-thumb [product]="product"></product-thumb>
+    }
+  </div>
+  <div *ngIf="selectedButton() === 2" class="grid grid-cols-4 gap-8">
+    @for(product of productList() ; track product._id) {
+      <product-thumb [product]="product"></product-thumb>
+    }
+  </div>
+  <div *ngIf="selectedButton() === 3" class="grid grid-cols-4 gap-8">
     @for(product of productList() ; track product._id) {
       <product-thumb [product]="product"></product-thumb>
     }
