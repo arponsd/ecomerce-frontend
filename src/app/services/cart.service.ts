@@ -15,8 +15,6 @@ export class CartService {
   add (product: any): any {
 
     if (isPlatformBrowser(this.platformId)) {
-      console.log('dfksk');
-
       if (localStorage.getItem('cartItems') === null) {
         const data = [product];
         localStorage.setItem('cartItems', JSON.stringify(data));

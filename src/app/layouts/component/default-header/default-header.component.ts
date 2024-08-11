@@ -16,33 +16,24 @@ import { CartService } from '../../../services/cart.service';
 export class DefaultHeaderComponent implements OnInit {
   authService = inject(AuthService);
   cartService = inject(CartService);
-  loginUser = this.authService.loginUser();
+  loginUser = Object.keys(this.authService.loginUser()).length ? this.authService.loginUser() : false;
 
-
-  constructor (@Inject(PLATFORM_ID) private platformId: object, private router: Router) {
-
+  constructor (private router: Router) {
   }
 
   ngOnInit(): void {
-    // console.log(this.loginUser);
-
-    if (isPlatformBrowser(this.platformId)) {
-      const cartCount = JSON.parse(localStorage.getItem('cartItems') as string).length;
-      this.cartService.cartItemsCount.set(cartCount);
-    }
+    const cartCount = JSON.parse(localStorage.getItem('cartItems') as string).length;
+    this.cartService.cartItemsCount.set(cartCount);
   }
 
   onLogout () {
     this.authService.logout().subscribe((res: any) => {
       if (res.success === true) {
-        if (isPlatformBrowser(this.platformId)) {
-          localStorage.removeItem('token');
-          this.router.navigate(['/']);
-        }
+        localStorage.removeItem('token');
+        this.router.navigate(['/']);
       } else {
         console.log(res);
       }
     })
   }
-
 }

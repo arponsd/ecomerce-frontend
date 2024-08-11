@@ -23,8 +23,22 @@ export class DefaultHomeComponent implements OnInit  {
   constructor() {}
   ngOnInit(): void {
     this.onClickOption(this.selectedButton());
-    let products = this.productService.products().data;
-    this.productList.set(products);
+    // let products = this.productService.products().data;
+    // console.log(products);
+
+    // this.productList.set(products);
+    this.getAllProducts();
+  }
+
+  getAllProducts() {
+    this.productService.get().subscribe((res: any) => {
+      if (res.success === true) {
+        this.productList.set(res.data);
+      } else {
+        console.log('error');
+
+      }
+    })
   }
 
   onClickOption(n: number) {

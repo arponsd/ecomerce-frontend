@@ -17,8 +17,7 @@ export class LoginComponent implements OnInit{
 
   constructor (private fb:FormBuilder,
     private authService: AuthService,
-    private router: Router,
-    @Inject(PLATFORM_ID) private platformId:Object
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -40,10 +39,10 @@ export class LoginComponent implements OnInit{
     };
     this.authService.login(body).subscribe((res: any) => {
       if(res.status === 'success') {
-        if (isPlatformBrowser(this.platformId)) {
-          localStorage.setItem('token', res.token);
-        }
-        this.router.navigateByUrl('/');
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/']).then(() => {
+          window.location.reload();
+        })
       } else {
         alert('Wrong email or password');
       }
