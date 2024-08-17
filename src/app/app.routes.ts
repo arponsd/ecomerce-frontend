@@ -4,13 +4,15 @@ import { DefaultHomeComponent } from './routes/default-home/default-home.compone
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ProductSingleComponent } from './routes/product-single/product-single.component';
+import { CartPageComponent } from './routes/cart-page/cart-page.component';
 
 export const routes: Routes = [
   {
     path: '', component:DefaultLayoutComponent,
     children: [
       {path: '', component: DefaultHomeComponent},
-      {path: 'product/:id', component: ProductSingleComponent}
+      {path: 'product/:id', component: ProductSingleComponent},
+      {path: 'cart', component: CartPageComponent}
     ]
   },
   {
